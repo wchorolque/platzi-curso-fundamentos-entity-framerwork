@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sKszzuXf+nUZl59nbgI5BAhGlwLdqSB3NaOAqO6qd1Y5+NIK/tpVzMcPhCiaTQGqLqjBd4hLvExFL7RmyJuwuQ==",
+  "dgSpecHash": "ONJjLzLMjjU04l1DM8fpKG+hEVXqI+t9/hns659djljVSJEWzOrsiM1CdnTZ/Vnjy4+LLcUkot90TS2rfM4D9w==",
   "success": true,
-  "projectFilePath": "C:\\dev\\platzi\\curso-fundamentos-de-entity-framework\\src\\src.csproj",
+  "projectFilePath": "D:\\code\\platzi\\platzi-curso-fundamentos-entity-framerwork\\src\\src.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\isra\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\isra\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
