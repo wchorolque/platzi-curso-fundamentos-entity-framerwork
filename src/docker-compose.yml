@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  SqlServer2022:
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=SaPassword@Admin
+    ports:
+      - '1433:1433'
+    image: 'mcr.microsoft.com/mssql/server:2022-latest'
