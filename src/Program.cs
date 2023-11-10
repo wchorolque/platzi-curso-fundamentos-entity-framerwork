@@ -19,7 +19,6 @@ app.MapGet("/dbconexion", async ([FromServices] TareasContext dbContext) =>
     return Results.Ok("Base de datos en memoria: " + dbContext.Database.IsInMemory());
 });
 
-
 app.MapGet("/api/tareas", async ([FromServices] TareasContext dbContext) =>
 {
     var tareas = dbContext.Tareas
@@ -27,6 +26,20 @@ app.MapGet("/api/tareas", async ([FromServices] TareasContext dbContext) =>
         .Where(p => p.Prioridad == EnumPrioridad.Baja);
 
     return Results.Ok(tareas);
+});
+
+app.MapPost("/api/tareas", async ([FromServices] TareasContext dbContext, [FromBody] Tarea tarea) =>
+{
+    tarea.TareaId = Guid.NewGuid();
+    tarea.FechaCreacion = DateTime.Now;
+    // Forma 1 de agregar el registro
+    await dbContext.AddAsync(tarea);
+    // Forma 2 de agregar el registro
+    // await dbContext.Tareas.AddAsync(tarea);
+    await dbContext.SaveChangesAsync();
+
+    return Results.Ok();
+
 });
 
 app.Run();
