@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.JSInterop.Implementation;
 using src;
 using src.Models;
 
@@ -39,7 +40,36 @@ app.MapPost("/api/tareas", async ([FromServices] TareasContext dbContext, [FromB
     await dbContext.SaveChangesAsync();
 
     return Results.Ok();
+});
 
+app.MapPut("/api/tareas/{id}", async ([FromServices] TareasContext dbContext, [FromBody] Tarea tarea, [FromRoute] Guid id) =>
+{
+    var tareaPorModificar = dbContext.Tareas.Find(id);
+    if (tareaPorModificar != null)
+    {
+        tareaPorModificar.CategoriaId = tarea.CategoriaId;
+        tareaPorModificar.Titulo = tarea.Titulo;
+        tareaPorModificar.Prioridad = tarea.Prioridad;
+        tareaPorModificar.Descripcion = tarea.Descripcion;
+        await dbContext.SaveChangesAsync();
+        return Results.Ok();
+    }
+
+    return Results.NotFound();
+});
+
+app.MapDelete("/api/tareas/{id}", async ([FromServices] TareasContext dbContext, [FromRoute] Guid id) =>
+{
+    var tareaPorEliminar = dbContext.Tareas.Find(id);
+    if (tareaPorEliminar != null)
+    {
+        dbContext.Remove(tareaPorEliminar);
+        await dbContext.SaveChangesAsync();
+
+        return Results.Ok();
+    }
+
+    return Results.NotFound();
 });
 
 app.Run();
